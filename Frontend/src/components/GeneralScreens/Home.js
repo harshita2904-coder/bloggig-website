@@ -43,7 +43,8 @@ const Home = () => {
         }
         // Defensive: ensure stories is always an array
         setStories(Array.isArray(data.data) ? data.data : []);
-        setPages(data.pages)
+        // Defensive: ensure pages is always a positive integer
+        setPages(Number.isInteger(data.pages) && data.pages > 0 ? data.pages : 1);
 
         setLoading(false)
       }
@@ -91,7 +92,10 @@ const Home = () => {
 
           </div>
 
-          <Pagination page={page} pages={pages} changePage={setPage} />
+          {/* Only render Pagination if pages > 1 */}
+          {pages > 1 && (
+            <Pagination page={page} pages={pages} changePage={setPage} />
+          )}
 
         </div>
 
