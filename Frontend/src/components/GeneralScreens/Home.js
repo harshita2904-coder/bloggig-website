@@ -47,7 +47,8 @@ const Home = () => {
         setLoading(false)
       }
       catch (error) {
-        setLoading(true)
+        setStories([]); // Ensure stories is always an array on error
+        setLoading(false); // Set loading to false on error
       }
     }
     getStories()
@@ -76,7 +77,7 @@ const Home = () => {
         :
         <div>
           <div className="story-card-wrapper">
-            {stories.length !== 0 ?
+            {Array.isArray(stories) && stories.length !== 0 ?
               stories.map((story) => {
                 return (
                   <CardStory key={uuidv4()} story={story} />
