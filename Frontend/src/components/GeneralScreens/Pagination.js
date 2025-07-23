@@ -5,7 +5,9 @@ import { TiMinus } from 'react-icons/ti'
 
 const Pagination = ({ page, pages, changePage }) => {
     function numberRange(start, end) {
-        return new Array(end - start).fill().map((d, i) => i + start);
+        const length = end - start;
+        if (length <= 0) return [];
+        return new Array(length).fill().map((d, i) => i + start);
     }
 
     let middlePagination;
