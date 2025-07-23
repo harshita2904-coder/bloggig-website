@@ -21,13 +21,14 @@ const EditStory = () => {
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
     const navigate = useNavigate()
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
 
     useEffect(() => {
 
         const getStoryInfo = async () => {
             setLoading(true)
             try {
-                const { data } = await axios.get(`/story/editStory/${slug}`, config)
+                const { data } = await axios.get(`${backendUrl}/story/editStory/${slug}`, config)
                 setStory(data.data)
                 setTitle(data.data.title)
                 setContent(data.data.content)
@@ -51,7 +52,7 @@ const EditStory = () => {
         formdata.append("previousImage", previousImage)
 
         try {
-            const { data } = await axios.put(`/story/${slug}/edit`, formdata, config)
+            const { data } = await axios.put(`${backendUrl}/story/${slug}/edit`, formdata, config)
 
             setSuccess('Edit Story successfully ')
 

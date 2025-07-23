@@ -35,8 +35,10 @@ const AddStory = () => {
         formdata.append("image", image)
         formdata.append("content", content)
 
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
+
         try {
-            const { data } = await axios.post("/story/addstory", formdata, config)
+            const { data } = await axios.post(`${backendUrl}/story/addstory`, formdata, config)
             setSuccess('Add story successfully ')
 
             clearInputs()

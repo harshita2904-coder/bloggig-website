@@ -8,12 +8,14 @@ const ForgotPasswordScreen = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
+
   const forgotPasswordHandler = async (e) => {
     e.preventDefault();
 
     try {
       const { data } = await axios.post(
-        "/auth/forgotpassword",
+        `${backendUrl}/auth/forgotpassword`,
         { email }
       );
 

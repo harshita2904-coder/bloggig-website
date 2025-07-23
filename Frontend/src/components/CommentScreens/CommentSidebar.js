@@ -10,6 +10,8 @@ const CommentSidebar = ({ slug, sidebarShowStatus, setSidebarShowStatus, activeU
 
   const sidebarRef = useRef(null);
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
+
   useEffect(() => {
     getStoryComments()
   }, [setCommentList])
@@ -17,7 +19,7 @@ const CommentSidebar = ({ slug, sidebarShowStatus, setSidebarShowStatus, activeU
 
   const getStoryComments = async () => {
     try {
-      const { data } = await axios.get(`/comment/${slug}/getAllComment`)
+      const { data } = await axios.get(`${backendUrl}/comment/${slug}/getAllComment`)
       setCommentList(data.data)
       setCount(data.count)
     }

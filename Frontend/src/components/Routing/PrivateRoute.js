@@ -20,8 +20,9 @@ const PrivateRoute =( ) => {
             authorization: `Bearer ${localStorage.getItem("authToken")}`,
             },
         };
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
         try {
-            const { data } = await axios.get("/auth/private", config); 
+            const { data } = await axios.get(`${backendUrl}/auth/private`, config); 
 
             setAuth(true)
             setActiveUser(data.user)

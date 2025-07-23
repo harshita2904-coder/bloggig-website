@@ -29,8 +29,9 @@ const ChangePassword = () => {
         }
 
         try {
+            const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
             const { data } = await axios.put(
-                "/user/changePassword",
+                `${backendUrl}/user/changePassword`,
                 {
                     newPassword,
                     oldPassword

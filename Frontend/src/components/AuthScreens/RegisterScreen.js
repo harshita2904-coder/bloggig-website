@@ -9,6 +9,7 @@ const RegisterScreen = () => {
   const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
 
   const registerHandler = async (e) => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const RegisterScreen = () => {
 
     try {
       const { data } = await axios.post(
-        "/auth/register",
+        `${backendUrl}/auth/register`,
         {
           username,
           email,

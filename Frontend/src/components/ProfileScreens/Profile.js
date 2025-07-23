@@ -29,7 +29,8 @@ const Profile = () => {
             setLoading(true)
 
             try {
-                const { data } = await axios.get("/user/profile", config)
+                const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
+                const { data } = await axios.get(`${backendUrl}/user/profile`, config)
 
                 setUser(data.data)
 

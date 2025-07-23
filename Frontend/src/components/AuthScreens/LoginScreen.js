@@ -7,6 +7,7 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate()
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
 
 
   const loginHandler = async (e) => {
@@ -14,7 +15,7 @@ const LoginScreen = () => {
 
     try {
       const { data } = await axios.post(
-        "/auth/login",
+        `${backendUrl}/auth/login`,
         { email, password }
       );
       localStorage.setItem("authToken", data.token);

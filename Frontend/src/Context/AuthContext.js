@@ -13,12 +13,14 @@ const AuthContextProvider = props => {
     },
   })
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
+
 
   useEffect(() => {
 
     const controlAuth = async () => {
       try {
-        const { data } = await axios.get("/auth/private", config);
+        const { data } = await axios.get(`${backendUrl}/auth/private`, config);
         setActiveUser(data.user)
       }
       catch (error) {

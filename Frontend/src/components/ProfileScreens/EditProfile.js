@@ -18,6 +18,7 @@ const EditProfile = () => {
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
 
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,7 +28,7 @@ const EditProfile = () => {
         formdata.append("photo", photo)
 
         try {
-            const { data } = await axios.post("/user/editProfile", formdata, config)
+            const { data } = await axios.post(`${backendUrl}/user/editProfile`, formdata, config)
 
             setSuccess('Edit Profile successfully ')
             setTimeout(() => {

@@ -10,6 +10,7 @@ const ResetPasswordScreen = () => {
   const [success, setSuccess] = useState("");
   const search = useLocation().search;
   const token = search.split("=")[1]
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
 
   const resetPasswordHandler = async (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const ResetPasswordScreen = () => {
 
     try {
       const { data } = await axios.put(
-        `/auth/resetpassword?resetPasswordToken=${token}`,
+        `${backendUrl}/auth/resetpassword?resetPasswordToken=${token}`,
         {
           password,
         }
