@@ -41,7 +41,8 @@ const Home = () => {
 
 
         }
-        setStories(data.data)
+        // Defensive: ensure stories is always an array
+        setStories(Array.isArray(data.data) ? data.data : []);
         setPages(data.pages)
 
         setLoading(false)
